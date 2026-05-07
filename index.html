@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gopichand Dhuri — VFX, Photography & Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #f5ede0;
+    --cream-dark: #ecdcca;
+    --gold: #b8873a;
+    --gold-light: #d4a554;
+    --gold-pale: #e8c98a;
+    --brown: #6b4c1e;
+    --brown-dark: #3d2a0e;
+    --text: #2a1a08;
+    --text-muted: #7a5c3a;
+    --white: #fdfaf6;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(245,237,224,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,135,58,0.15);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(107,76,30,0.10); }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--brown-dark);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--white) !important;
+    padding: 0.5rem 1.3rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--brown) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 4rem 4rem;
+    gap: 4rem;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(184,135,58,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(184,135,58,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-text { z-index: 1; animation: fadeUp 0.9s ease both; }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--brown-dark);
+    margin-bottom: 0.3rem;
+  }
+  .hero-name em { font-style: italic; color: var(--gold); }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 1.8rem;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 440px;
+    margin-bottom: 2.4rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border: none;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--brown); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--gold);
+    padding: 0.85rem 2rem;
+    border: 1.5px solid var(--gold);
+    border-radius: 2px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { background: var(--gold); color: var(--white); }
+  .hero-image-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    animation: fadeUp 1.1s 0.2s ease both;
+  }
+  .hero-img-frame {
+    position: relative;
+    width: 380px; height: 480px;
+  }
+  .hero-img-frame::before {
+    content: '';
+    position: absolute;
+    top: 18px; left: 18px;
+    width: 100%; height: 100%;
+    border: 1.5px solid var(--gold-pale);
+    border-radius: 2px;
+    z-index: 0;
+  }
+  .hero-img-frame img {
+    position: relative;
+    z-index: 1;
+    width: 380px;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: sepia(8%) contrast(1.04);
+  }
+  .hero-tag {
+    position: absolute;
+    bottom: 28px; left: -24px;
+    background: var(--brown-dark);
+    color: var(--gold-pale);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    padding: 0.6rem 1.2rem;
+    z-index: 2;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 6rem 4rem; }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--brown-dark);
+    margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-sub {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .tool-tag {
+    background: var(--cream-dark);
+    border: 1px solid rgba(184,135,58,0.25);
+    color: var(--brown);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+  }
+  .about-right { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about-block {
+    padding: 1.5rem;
+    background: var(--white);
+    border-left: 2px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+  }
+  .about-block h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 0.4rem;
+  }
+  .about-block p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .service-card {
+    background: var(--cream);
+    border: 1px solid rgba(184,135,58,0.18);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(107,76,30,0.12); }
+  .service-card-header {
+    background: var(--brown-dark);
+    color: var(--gold-pale);
+    padding: 2rem;
+  }
+  .service-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .service-card-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+  .service-card-header p {
+    font-size: 0.78rem;
+    opacity: 0.7;
+    letter-spacing: 0.06em;
+  }
+  .service-items { padding: 1.5rem 2rem; list-style: none; }
+  .service-items li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(184,135,58,0.1);
+  }
+  .service-items li:last-child { border-bottom: none; }
+  .service-items li::before {
+    content: '→';
+    color: var(--gold);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--cream); }
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .portfolio-filter {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(184,135,58,0.3);
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--white);
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  .project-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(184,135,58,0.12);
+    transition: box-shadow 0.3s;
+  }
+  .project-card:hover { box-shadow: 0 16px 48px rgba(107,76,30,0.10); }
+  .project-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    height: 200px;
+  }
+  .project-img-placeholder {
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    position: relative;
+    overflow: hidden;
+  }
+  .project-img-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(184,135,58,0.08) 0%, transparent 60%);
+  }
+  .project-img-placeholder .img-icon { font-size: 1.6rem; opacity: 0.4; }
+  .project-body { padding: 1.5rem; }
+  .project-category {
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 0.3rem;
+  }
+  .project-meta {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .project-meta span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .project-desc {
+    font-size: 0.83rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .project-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.7rem; }
+  .portfolio-drive-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  /* ── WHY ME ── */
+  #whyme {
+    background: var(--brown-dark);
+    color: var(--cream);
+    text-align: center;
+  }
+  #whyme .section-title { color: var(--cream); }
+  #whyme .section-title em { color: var(--gold-pale); }
+  #whyme .section-eyebrow { color: var(--gold-pale); }
+  #whyme .section-eyebrow::before { background: var(--gold-pale); }
+  #whyme .section-sub { color: rgba(245,237,224,0.65); margin: 0 auto 3rem; }
+  .whyme-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .whyme-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(184,135,58,0.2);
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    transition: background 0.3s;
+  }
+  .whyme-card:hover { background: rgba(184,135,58,0.1); }
+  .whyme-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .whyme-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--gold-pale);
+    margin-bottom: 0.5rem;
+  }
+  .whyme-card p {
+    font-size: 0.82rem;
+    color: rgba(245,237,224,0.6);
+    line-height: 1.7;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--white); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .testimonial-card {
+    background: var(--cream);
+    border-radius: 4px;
+    padding: 2rem;
+    border: 1px solid rgba(184,135,58,0.15);
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--gold-pale);
+    opacity: 0.5;
+    position: absolute;
+    top: 0.5rem; left: 1.2rem;
+    line-height: 1;
+  }
+  .testimonial-text {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    padding-top: 2rem;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 0.8rem; }
+  .author-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--brown-dark);
+    flex-shrink: 0;
+  }
+  .author-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--brown-dark);
+  }
+  .author-role {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-left {}
+  .contact-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+  }
+  .contact-methods { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--white);
+    border-radius: 4px;
+    border: 1px solid rgba(184,135,58,0.15);
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-method:hover { border-color: var(--gold); transform: translateX(4px); }
+  .contact-method-icon {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .cm-wa { background: #25D366; }
+  .cm-email { background: var(--gold); }
+  .contact-method-info {}
+  .contact-method-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .contact-method-value {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--brown-dark);
+  }
+  .contact-right {}
+  .availability-card {
+    background: var(--brown-dark);
+    color: var(--cream);
+    border-radius: 4px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .availability-dot {
+    width: 10px; height: 10px;
+    background: #4ade80;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .availability-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--gold-pale);
+  }
+  .availability-card p {
+    font-size: 0.83rem;
+    color: rgba(245,237,224,0.65);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .services-quick { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .sq-tag {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(184,135,58,0.25);
+    color: var(--gold-pale);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+  .location-card {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 1.5rem;
+    border: 1px solid rgba(184,135,58,0.15);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .location-card strong { color: var(--brown-dark); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--brown-dark);
+    color: var(--cream);
+    padding: 3rem 4rem 2rem;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(184,135,58,0.15);
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .footer-brand {}
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+  .footer-logo span { color: var(--gold-pale); }
+  .footer-tagline {
+    font-size: 0.78rem;
+    color: rgba(245,237,224,0.5);
+    letter-spacing: 0.06em;
+    font-style: italic;
+  }
+  .footer-links { display: flex; gap: 4rem; flex-wrap: wrap; }
+  .footer-col h5 {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-pale);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.5rem; }
+  .footer-col ul li a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    color: rgba(245,237,224,0.55);
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold-pale); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: rgba(245,237,224,0.4);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(184,135,58,0.3), transparent);
+    margin: 0 4rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero, #about, #contact { grid-template-columns: 1fr; padding: 5rem 1.5rem 3rem; }
+    #hero { gap: 2rem; }
+    .hero-img-frame { width: 280px; height: 360px; }
+    .hero-img-frame img { width: 280px; height: 360px; }
+    section { padding: 4rem 1.5rem; }
+    .services-grid, .whyme-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .footer-top { flex-direction: column; }
+    .footer-links { flex-direction: column; gap: 2rem; }
+    .divider { margin: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Gopichand <span>Dhuri</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#contact" class="nav-cta">Book Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Mumbai, India</div>
+    <h1 class="hero-name">Gopichand<br><em>Dhuri</em></h1>
+    <p class="hero-title">VFX · Photography · Graphic Design</p>
+    <p class="hero-desc">I capture moments, craft visuals, and build brand identities. From pre-wedding films to social media graphics — I bring your vision to life with precision and heart.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Book a Session</a>
+      <a href="#portfolio" class="btn-ghost">View My Work</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years Active</div>
+      </div>
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Projects Done</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Services</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <div class="hero-img-frame">
+      <img src="https://i.imgur.com/placeholder.jpg"
+           onerror="this.style.background='#e8d5b8';this.removeAttribute('src');this.alt='Gopichand Dhuri';"
+           alt="Gopichand Dhuri"
+           id="heroImg"/>
+      <div class="hero-tag">Based in Mumbai</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left reveal">
+    <div class="section-eyebrow">About Me</div>
+    <h2 class="section-title">Passionate about<br><em>visual storytelling</em></h2>
+    <p style="font-size:0.92rem;line-height:1.9;color:var(--text-muted);margin-bottom:1.5rem;">
+      Hi, I'm Gopichand — a Mumbai-based VFX & Motion Graphic Designer with a deep love for photography and visual design. Whether it's a wedding film, a brand identity, or a gym's social media presence, I approach every project with the same level of care and craft.
+    </p>
+    <p style="font-size:0.92rem;line-height:1.9;color:var(--text-muted);margin-bottom:1.5rem;">
+      Trained at Shankar Multimedia Institute, I work across the full Adobe Creative Suite and bring a creative eye honed through years of real-world shoots and design work across Mumbai.
+    </p>
+    <div class="about-tools">
+      <span class="tool-tag">After Effects</span>
+      <span class="tool-tag">Premiere Pro</span>
+      <span class="tool-tag">Photoshop</span>
+      <span class="tool-tag">Illustrator</span>
+      <span class="tool-tag">InDesign</span>
+      <span class="tool-tag">Adobe XD</span>
+      <span class="tool-tag">Figma</span>
+      <span class="tool-tag">CorelDraw</span>
+    </div>
+  </div>
+  <div class="about-right reveal">
+    <div class="about-block">
+      <h4>🎓 Education</h4>
+      <p>HSC — Maharashtra State Board<br>Graphic Designing Course — Shankar Multimedia Institute</p>
+    </div>
+    <div class="about-block">
+      <h4>📍 Location</h4>
+      <p>Sakinaka, Mumbai — 400072<br>Available for shoots across Mumbai & nearby</p>
+    </div>
+    <div class="about-block">
+      <h4>🎯 Speciality</h4>
+      <p>VFX · Motion Graphics · Wedding Videography · Brand Identity · Product Photography · Reel Edits</p>
+    </div>
+    <div class="about-block">
+      <h4>📸 Hobby</h4>
+      <p>Photography — my creative outlet that sharpens my eye for composition, light, and storytelling in everything I do.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div style="text-align:center;margin-bottom:3rem;" class="reveal">
+    <div class="section-eyebrow" style="justify-content:center;">What I Offer</div>
+    <h2 class="section-title">My <em>Services</em></h2>
+    <p class="section-sub" style="margin:0 auto;">Three core disciplines, crafted for clients who want work that stands out.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-card-header">
+        <div class="service-icon">📸</div>
+        <h3>Photography</h3>
+        <p>Capturing moments with intention</p>
+      </div>
+      <ul class="service-items">
+        <li>AI Photo Edits &amp; Retouching</li>
+        <li>Photo Shoots &amp; Post Edits</li>
+        <li>Gym, Cafe &amp; Salon Shoots</li>
+        <li>Location Marketing Shoots</li>
+        <li>Portrait &amp; Event Photography</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-card-header">
+        <div class="service-icon">🎬</div>
+        <h3>Videography</h3>
+        <p>Films that move people</p>
+      </div>
+      <ul class="service-items">
+        <li>Pre-Wedding Shoots &amp; Films</li>
+        <li>Reel Edits (Instagram / YouTube)</li>
+        <li>Carousel Videos</li>
+        <li>Event Videography</li>
+        <li>VFX &amp; Motion Graphics</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-card-header">
+        <div class="service-icon">🎨</div>
+        <h3>Graphic Design</h3>
+        <p>Design that builds brands</p>
+      </div>
+      <ul class="service-items">
+        <li>MIDI Somay Vidyanikhar</li>
+        <li>Wedding Cards &amp; Pamphlets</li>
+        <li>Social Media Graphics &amp; Posts</li>
+        <li>Brand Manual &amp; Identity Design</li>
+        <li>Logo Creation &amp; Animation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header reveal">
+    <div>
+      <div class="section-eyebrow">Selected Work</div>
+      <h2 class="section-title">My <em>Projects</em></h2>
+    </div>
+    <div class="portfolio-filter">
+      <button class="filter-btn active" onclick="filterProjects('all',this)">All</button>
+      <button class="filter-btn" onclick="filterProjects('photography',this)">Photography</button>
+      <button class="filter-btn" onclick="filterProjects('videography',this)">Videography</button>
+      <button class="filter-btn" onclick="filterProjects('design',this)">Design</button>
+    </div>
+  </div>
+
+  <div class="projects-grid" id="projectsGrid">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card reveal" data-cat="videography">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">🎬</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">🎬</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Videography · Pre-Wedding</div>
+        <div class="project-title">Rohit & Priya — Pre-Wedding Film</div>
+        <div class="project-meta">
+          <span>👤 Client: Rohit Sharma</span>
+          <span>⏱ Duration: 3 days</span>
+          <span>📍 Lonavala</span>
+        </div>
+        <p class="project-desc">A cinematic pre-wedding shoot capturing golden-hour moments across Lonavala. Included drone coverage, VFX colour grading, and a full short film edit with music sync.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card reveal" data-cat="videography">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">🎥</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">🎥</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Videography · Reel Edits</div>
+        <div class="project-title">Trendy Transitions — Instagram Reel Pack</div>
+        <div class="project-meta">
+          <span>👤 Client: Zara Fashion, Andheri</span>
+          <span>⏱ Duration: 1 week</span>
+          <span>📍 Mumbai</span>
+        </div>
+        <p class="project-desc">A set of 6 high-energy Instagram reels with beat-sync transitions, colour grading, and text animation designed to boost engagement and brand reach.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card reveal" data-cat="videography">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">📹</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">📹</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Videography · Carousel Videos</div>
+        <div class="project-title">Menu Launch — Carousel Video Series</div>
+        <div class="project-meta">
+          <span>👤 Client: The Brew House Café</span>
+          <span>⏱ Duration: 4 days</span>
+          <span>📍 Bandra, Mumbai</span>
+        </div>
+        <p class="project-desc">A 5-slide animated carousel video for a café's new menu launch, with food close-ups, branded motion graphics, and smooth transitions optimised for Instagram.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card reveal" data-cat="photography">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">📸</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">📸</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Photography · AI Photo Edits</div>
+        <div class="project-title">Portrait Retouch — AI Enhanced Series</div>
+        <div class="project-meta">
+          <span>👤 Client: Sneha Kulkarni</span>
+          <span>⏱ Duration: 2 days</span>
+          <span>📍 Studio, Mumbai</span>
+        </div>
+        <p class="project-desc">AI-assisted photo editing across a 40-image portrait set — skin retouching, background replacement, colour grading, and export in multiple formats for social and print.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project-card reveal" data-cat="photography">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">🏋️</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">🏋️</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Photography · Location Marketing</div>
+        <div class="project-title">FitZone Gym — Brand Photography</div>
+        <div class="project-meta">
+          <span>👤 Client: FitZone Gym, Sakinaka</span>
+          <span>⏱ Duration: 1 day</span>
+          <span>📍 Sakinaka, Mumbai</span>
+        </div>
+        <p class="project-desc">Full-day brand shoot for a local gym — equipment highlights, member action shots, and interiors for use across Google listings, social media, and flex banners.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="project-card reveal" data-cat="design">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">💍</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">💍</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Graphic Design · Wedding</div>
+        <div class="project-title">Sharma Wedding — Invitation Suite</div>
+        <div class="project-meta">
+          <span>👤 Client: Amit Sharma</span>
+          <span>⏱ Duration: 5 days</span>
+          <span>📍 Mumbai</span>
+        </div>
+        <p class="project-desc">A complete wedding stationery set — digital invitation, pamphlets, event schedule cards, and WhatsApp sharable assets, all in a cohesive floral gold theme.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 7 -->
+    <div class="project-card reveal" data-cat="design">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">📱</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">📱</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Graphic Design · Social Media</div>
+        <div class="project-title">GlowUp Salon — Monthly Social Pack</div>
+        <div class="project-meta">
+          <span>👤 Client: GlowUp Salon, Powai</span>
+          <span>⏱ Duration: Ongoing (Monthly)</span>
+          <span>📍 Powai, Mumbai</span>
+        </div>
+        <p class="project-desc">Monthly social media graphic package — 20 posts per month including offers, reels covers, story templates, and festive creatives in the salon's brand palette.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 8 -->
+    <div class="project-card reveal" data-cat="design">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">🏢</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">🏢</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Graphic Design · Brand Identity</div>
+        <div class="project-title">NovaBuild — Brand Manual & Identity</div>
+        <div class="project-meta">
+          <span>👤 Client: NovaBuild Interiors</span>
+          <span>⏱ Duration: 2 weeks</span>
+          <span>📍 Andheri, Mumbai</span>
+        </div>
+        <p class="project-desc">End-to-end brand identity — logo suite, typography system, colour palette, stationery design, and a 24-page brand manual delivered in print-ready and digital formats.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 9 -->
+    <div class="project-card reveal" data-cat="design">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">🎓</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">🎓</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Graphic Design · Education</div>
+        <div class="project-title">MIDI Somay Vidyanikhar — Print Collateral</div>
+        <div class="project-meta">
+          <span>👤 Client: MIDI Somay Vidyanikhar</span>
+          <span>⏱ Duration: 1 week</span>
+          <span>📍 Mumbai</span>
+        </div>
+        <p class="project-desc">Designed a full set of printed educational collateral — brochures, event banners, prospectus layout, and social assets for an academic institution's annual outreach campaign.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 10 -->
+    <div class="project-card reveal" data-cat="photography">
+      <div class="project-images">
+        <div class="project-img-placeholder"><span class="img-icon">☕</span><span>Image 1</span></div>
+        <div class="project-img-placeholder"><span class="img-icon">☕</span><span>Image 2</span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-category">Photography · Product & Interiors</div>
+        <div class="project-title">Brewnest Café — Interior & Product Shoot</div>
+        <div class="project-meta">
+          <span>👤 Client: Brewnest Café</span>
+          <span>⏱ Duration: 1 day</span>
+          <span>📍 Kurla, Mumbai</span>
+        </div>
+        <p class="project-desc">Full-day shoot covering interior ambiance, coffee close-ups, and team portraits. Delivered 60 edited images across both warm-tone and clean white styles for menu and social use.</p>
+        <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="project-link">View Full Work →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="portfolio-drive-cta reveal">
+    <a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank" class="btn-primary" style="font-size:0.85rem;">
+      View Full Portfolio on Drive →
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY ME -->
+<section id="whyme">
+  <div class="reveal">
+    <div class="section-eyebrow" style="justify-content:center;">Why Choose Me</div>
+    <h2 class="section-title">What you <em>get</em></h2>
+    <p class="section-sub">Every project, big or small, gets my full focus — from first call to final file.</p>
+  </div>
+  <div class="whyme-grid reveal">
+    <div class="whyme-card">
+      <div class="whyme-icon">⚡</div>
+      <h4>Fast Delivery</h4>
+      <p>Quick turnarounds without cutting corners. I respect your timelines and keep you updated throughout.</p>
+    </div>
+    <div class="whyme-card">
+      <div class="whyme-icon">🎯</div>
+      <h4>One-Stop Creative</h4>
+      <p>Photography, videography, and design — all under one roof. No need to coordinate multiple freelancers.</p>
+    </div>
+    <div class="whyme-card">
+      <div class="whyme-icon">📍</div>
+      <h4>Mumbai Based</h4>
+      <p>Local availability for on-site shoots across Mumbai. No travel delays, quick response, familiar locations.</p>
+    </div>
+    <div class="whyme-card">
+      <div class="whyme-icon">💬</div>
+      <h4>Clear Communication</h4>
+      <p>You'll always know where your project stands. Direct WhatsApp access and quick replies, always.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div style="text-align:center;margin-bottom:3rem;" class="reveal">
+    <div class="section-eyebrow" style="justify-content:center;">Kind Words</div>
+    <h2 class="section-title">What clients <em>say</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <p class="testimonial-text">Gopichand shot our pre-wedding and the results were beyond what we imagined. The editing had a cinematic quality we didn't expect at this price point. Highly recommend!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">R</div>
+        <div>
+          <div class="author-name">Rohit Sharma</div>
+          <div class="author-role">Pre-Wedding Client · Lonavala</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <p class="testimonial-text">We needed a brand identity built from scratch and Gopi delivered a full manual that our team can actually use. Thoughtful, clean, and very professional work.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">N</div>
+        <div>
+          <div class="author-name">Nisha Patil</div>
+          <div class="author-role">Brand Identity Client · Andheri</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <p class="testimonial-text">Our gym's Instagram engagement doubled after Gopi redesigned our social media templates. The photos were crisp and the reels were exactly the vibe we wanted.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">K</div>
+        <div>
+          <div class="author-name">Karan Mehta</div>
+          <div class="author-role">Gym Owner · Sakinaka</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <div class="section-eyebrow">Get in Touch</div>
+    <h2 class="section-title">Let's work<br><em>together</em></h2>
+    <p class="contact-tagline">"Have a shoot in mind? A brand to build? Or just a question — drop me a message."</p>
+    <div class="contact-methods">
+      <a href="https://wa.me/917304133205" target="_blank" class="contact-method">
+        <div class="contact-method-icon cm-wa">💬</div>
+        <div class="contact-method-info">
+          <div class="contact-method-label">WhatsApp</div>
+          <div class="contact-method-value">+91 73041 33205</div>
+        </div>
+      </a>
+      <a href="mailto:gopichanddhuri3016@gmail.com" class="contact-method">
+        <div class="contact-method-icon cm-email">✉️</div>
+        <div class="contact-method-info">
+          <div class="contact-method-label">Email</div>
+          <div class="contact-method-value">gopichanddhuri3016@gmail.com</div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="contact-right reveal">
+    <div class="availability-card">
+      <div><span class="availability-dot"></span><span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-pale);font-weight:500;">Currently Available</span></div>
+      <h4 style="margin-top:0.8rem;">Open for freelance projects</h4>
+      <p>Taking on new bookings for photography, videography, and design work. Reach out to discuss your project timeline and budget.</p>
+      <div class="services-quick">
+        <span class="sq-tag">Photography</span>
+        <span class="sq-tag">Videography</span>
+        <span class="sq-tag">Graphic Design</span>
+        <span class="sq-tag">Reels</span>
+        <span class="sq-tag">Brand Identity</span>
+        <span class="sq-tag">Wedding</span>
+      </div>
+    </div>
+    <div class="location-card">
+      📍 <strong>Sakinaka, Mumbai — 400072</strong><br>
+      Available for on-site work across Mumbai and nearby areas.<br>
+      <span style="font-size:0.78rem;opacity:0.7;">Usually responds within a few hours on WhatsApp.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">Gopichand <span>Dhuri</span></div>
+      <div class="footer-tagline">VFX · Photography · Graphic Design · Mumbai</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Photography</a></li>
+          <li><a href="#services">Videography</a></li>
+          <li><a href="#services">Graphic Design</a></li>
+          <li><a href="#services">Brand Identity</a></li>
+          <li><a href="#services">Reel Edits</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="https://wa.me/917304133205">WhatsApp</a></li>
+          <li><a href="mailto:gopichanddhuri3016@gmail.com">Email</a></li>
+          <li><a href="https://drive.google.com/file/d/1mgljyIVZ0pEo_5SUgJIFPFOiStJwVOOW/view?usp=drive_link" target="_blank">Portfolio Drive</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Gopichand Dhuri. All rights reserved.</span>
+    <span>Designed & built with care · Mumbai</span>
+  </div>
+</footer>
+
+<script>
+  // Load hero image from upload
+  (function(){
+    const img = document.getElementById('heroImg');
+    img.src = '/mnt/user-data/uploads/WhatsApp_Image_2026-05-07_at_12_12_39_PM.jpeg';
+    img.onerror = function(){
+      this.style.background = 'linear-gradient(135deg, #e8d5b8 0%, #d4c0a0 100%)';
+      this.removeAttribute('src');
+    };
+  })();
+
+  // Nav scroll shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Portfolio filter
+  function filterProjects(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = show ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
